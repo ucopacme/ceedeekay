@@ -1,0 +1,192 @@
+________________________________________________________________________________
+5/28/2019
+
+Great.  I've got nodejs installed on fedora.  how do I do care and feedin of my
+node environment?
+
+> nvm -h
+
+> nvm help 
+
+> nvm ls
+->     v11.10.0
+         system
+default -> stable (-> v11.10.0)
+node -> stable (-> v11.10.0) (default)
+stable -> 11.10 (-> v11.10.0) (default)
+iojs -> N/A (default)
+unstable -> N/A (default)
+lts/* -> lts/dubnium (-> N/A)
+lts/argon -> v4.9.1 (-> N/A)
+lts/boron -> v6.16.0 (-> N/A)
+lts/carbon -> v8.15.0 (-> N/A)
+lts/dubnium -> v10.15.1 (-> N/A)
+
+> nvm current 
+v11.10.0
+
+> nvm which current
+/home/agould/.nvm/versions/node/v11.10.0/bin/node
+
+
+> ll ~/.nvm
+total 208
+drwxrwxr-x. 3 agould agould   4096 Feb 20 13:12 alias
+-rw-rw-r--. 1 agould agould   2122 Feb 20 13:02 bash_completion
+-rw-rw-r--. 1 agould agould   1057 Feb 20 13:02 CONTRIBUTING.md
+-rw-rw-r--. 1 agould agould   4011 Feb 20 13:02 Dockerfile
+-rwxrwxr-x. 1 agould agould  13226 Feb 20 13:02 install.sh
+-rw-rw-r--. 1 agould agould   1078 Feb 20 13:02 LICENSE.md
+-rw-rw-r--. 1 agould agould   5364 Feb 20 13:02 Makefile
+-rwxrwxr-x. 1 agould agould    344 Feb 20 13:02 nvm-exec
+-rw-rw-r--. 1 agould agould 110106 Feb 20 13:02 nvm.sh
+-rw-rw-r--. 1 agould agould   2016 Feb 20 13:02 package.json
+-rw-rw-r--. 1 agould agould  28679 Feb 20 13:02 README.md
+-rw-rw-r--. 1 agould agould    910 Feb 20 13:02 ROADMAP.md
+drwxrwxr-x. 9 agould agould   4096 Feb 20 13:02 test
+-rwxrwxr-x. 1 agould agould   2206 Feb 20 13:02 update_test_mocks.sh
+drwxrwxr-x. 3 agould agould   4096 Feb 20 13:12 versions
+
+
+________________________________________________________________________________
+dealing with npm
+
+> npm help
+> npm help ls
+> npm ls
+/home/agould
+└── (empty)
+
+> cd demoapp
+> npm ls | head
+├─┬ @aws-cdk/cdk@0.24.1
+│ ├── @aws-cdk/cx-api@0.24.1
+│ ├── js-base64@2.5.1
+│ └─┬ json-diff@0.3.1
+│   ├─┬ cli-color@0.1.7
+│   │ └── es5-ext@0.8.2
+│   ├─┬ difflib@0.2.4
+│   │ └── heap@0.2.6
+│   └─┬ dreamopt@0.6.0
+
+# global installation (/usr/local)
+> npm ls -g
+/home/agould/.nvm/versions/node/v11.10.0/lib
+├─┬ aws-cdk@0.31.0
+│ ├─┬ @aws-cdk/applet-js@0.31.0
+│ │ ├─┬ @aws-cdk/cdk@0.31.0
+│ │ │ └── @aws-cdk/cx-api@0.31.0 deduped
+│ │ ├── fs-extra@7.0.1 deduped
+│ │ ├── source-map-support@0.5.12 deduped
+│ │ └── yaml@1.5.1 deduped
+│ ├─┬ @aws-cdk/cloudformation-diff@0.31.0
+│ │ ├─┬ @aws-cdk/cfnspec@0.31.0
+ 
+
+
+________________________________________________________________________________
+2/20/2019
+
+ 1049  dnf search nodejs
+ 1050  rpm -qa | grep nodejs
+ 1051  sudo dnf install nodejs
+ 1052  which npm
+ 1053  npm help
+
+agould@horus:~> node --version
+v6.12.0
+agould@horus:~> npm --version
+3.10.10
+
+
+these are old.  I should install direct from nodejs repo.
+
+
+________________________________________________________________________________
+
+agould@horus:~/development/nodejs> curl -sL https://rpm.nodesource.com/setup_11.x > node_setup.sh
+agould@horus:~/development/nodejs> sudo bash node_setup.sh 
+
+## Installing the NodeSource Node.js 11.x repo...
+
+
+## Inspecting system...
+
++ rpm -q --whatprovides redhat-release || rpm -q --whatprovides centos-release || rpm -q --whatprovides cloudlinux-release || rpm -q --whatprovides sl-release
++ uname -m
+
+## You don't appear to be running a supported version of Enterprise Linux. Please contact NodeSource at https://github.com/nodesource/distributions/issues if you think this is incorrect or would like your architecture to be considered for support. Include your 'distribution package' name: generic-release-25-1.noarch. 
+
+FAIL!
+
+
+________________________________________________________________________________
+
+trying now with nvm...
+
+https://medium.com/@ramsondon/running-nodejs-8-x-on-fedora-26-e062d06cf0dd
+
+
+agould@horus:~/development/nodejs> wget https://raw.githubusercontent.com/creationix/nvm/master/install.sh
+agould@horus:~/development/nodejs> mv install.sh nvm_install.sh
+
+agould@horus:~/development/nodejs> sudo bash nvm_install.sh 
+=> Downloading nvm from git to '/root/.nvm'
+=> Cloning into '/root/.nvm'...
+remote: Enumerating objects: 278, done.
+remote: Counting objects: 100% (278/278), done.
+remote: Compressing objects: 100% (249/249), done.
+remote: Total 278 (delta 33), reused 93 (delta 16), pack-reused 0
+Receiving objects: 100% (278/278), 142.36 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (33/33), done.
+Checking connectivity... done.
+=> Compressing and cleaning up git repository
+
+=> Appending nvm source string to /root/.bashrc
+=> Appending bash_completion source string to /root/.bashrc
+=> Close and reopen your terminal to start using nvm or run the following to use it now:
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+looks like I should have done this install as normal user.  try again
+
+ 1151  bash nvm_install.sh 
+ 1152  cat ~/.bashrc 
+ 1153  which nvm
+ 1154  . ~/.bashrc 
+ 1155  which nvm
+
+sweet!
+
+
+agould@horus:~/development/nodejs> nvm ls-remote | tail
+        v11.1.0
+        v11.2.0
+        v11.3.0
+        v11.4.0
+        v11.5.0
+        v11.6.0
+        v11.7.0
+        v11.8.0
+        v11.9.0
+       v11.10.0
+
+agould@horus:~/development/nodejs> nvm install stable
+Downloading and installing node v11.10.0...
+Downloading https://nodejs.org/dist/v11.10.0/node-v11.10.0-linux-x64.tar.xz...
+######################################################################## 100.0%
+Computing checksum with sha256sum
+Checksums matched!
+Now using node v11.10.0 (npm v6.7.0)
+Creating default alias: default -> stable (-> v11.10.0)
+agould@horus:~/development/nodejs> nvm current
+v11.10.0
+agould@horus:~/development/nodejs> nvm use system
+Now using system version of node: v6.12.0 (npm v3.10.10)
+agould@horus:~/development/nodejs> nvm use stable
+Now using node v11.10.0 (npm v6.7.0)
+
+

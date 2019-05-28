@@ -1,0 +1,176 @@
+________________________________________________________________________________
+5/28/2019
+
+maintaining my aws-cdk environment
+
+(python3.7) agould@horus:~/git-repos/github/ucopacme/cdk-pipeline> ll
+total 0
+(python3.7) agould@horus:~/git-repos/github/ucopacme/cdk-pipeline> npm install aws-cdk
+
+> core-js@2.6.9 postinstall /home/agould/git-repos/github/ucopacme/cdk-pipeline/node_modules/core-js
+> node scripts/postinstall || echo "ignore"
+
+Thank you for using core-js ( https://github.com/zloirock/core-js ) for polyfilling JavaScript standard library!
+
+The project needs your help! Please consider supporting of core-js on Open Collective or Patreon: 
+> https://opencollective.com/core-js 
+> https://www.patreon.com/zloirock 
+
+Also, the author of core-js ( https://github.com/zloirock ) is looking for a good job -)
+
+npm WARN saveError ENOENT: no such file or directory, open '/home/agould/git-repos/github/ucopacme/cdk-pipeline/package.json'
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN enoent ENOENT: no such file or directory, open '/home/agould/git-repos/github/ucopacme/cdk-pipeline/package.json'
+npm WARN cdk-pipeline No description
+npm WARN cdk-pipeline No repository field.
+npm WARN cdk-pipeline No README data
+npm WARN cdk-pipeline No license field.
+
++ aws-cdk@0.32.0
+added 267 packages from 247 contributors and audited 545 packages in 21.251s
+found 0 vulnerabilities
+
+
+________________________________________________________________________________
+2/20/2019
+
+https://awslabs.github.io/aws-cdk/
+
+https://docs.aws.amazon.com/CDK/latest/userguide/install_config.html
+
+
+agould@horus:~/development/nodejs> npm install -g aws-cdk
+/home/agould/.nvm/versions/node/v11.10.0/bin/cdk -> /home/agould/.nvm/versions/node/v11.10.0/lib/node_modules/aws-cdk/bin/cdk
++ aws-cdk@0.24.1
+added 274 packages from 253 contributors in 9.46s
+agould@horus:~/development/nodejs> cdk --version
+0.24.1 (build 67fcf6d)
+
+
+agould@horus:~/development/nodejs> mkdir demoapp
+agould@horus:~/development/nodejs> cd demoapp
+agould@horus:~/development/nodejs/demoapp> cdk init -l typescript
+Applying project template app for typescript
+Initializing a new git repository...
+Executing npm install...
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN demoapp@0.1.0 No repository field.
+npm WARN demoapp@0.1.0 No license field.
+
+# Useful commands
+
+ * `npm run build`   compile typescript to js
+ * `npm run watch`   watch for changes and compile
+ * `cdk deploy`      deploy this stack to your default AWS account/region
+ * `cdk diff`        compare deployed stack with current state
+ * `cdk synth`       emits the synthesized CloudFormation template
+
+agould@horus:~/development/nodejs/demoapp> ll
+total 116
+drwxrwxr-x.   2 agould agould  4096 Feb 20 14:38 bin
+-rw-rw-r--.   1 agould agould    35 Feb 20 14:38 cdk.json
+drwxrwxr-x.   2 agould agould  4096 Feb 20 14:38 lib
+drwxrwxr-x. 240 agould agould 12288 Feb 20 14:39 node_modules
+-rw-rw-r--.   1 agould agould   375 Feb 20 14:38 package.json
+-rw-rw-r--.   1 agould agould 80250 Feb 20 14:39 package-lock.json
+-rw-rw-r--.   1 agould agould   320 Feb 20 14:38 README.md
+-rw-rw-r--.   1 agould agould   558 Feb 20 14:38 tsconfig.json
+agould@horus:~/development/nodejs/demoapp> ll bin lib
+bin:
+total 4
+-rw-rw-r--. 1 agould agould 227 Feb 20 14:38 demoapp.ts
+
+lib:
+total 4
+-rw-rw-r--. 1 agould agould 239 Feb 20 14:38 demoapp-stack.ts
+
+
+agould@horus:~/development/nodejs/demoapp> git log --stat
+commit 70a23cb7c5d384af19842a4218455f360aca87ce
+Author: Ashley Gould <agould@ucop.edu>
+Date:   Wed Feb 20 14:38:54 2019 -0800
+
+    Initial commit
+
+ .gitignore           |  3 +++
+ .npmignore           |  2 ++
+ README.md            |  7 +++++++
+ bin/demoapp.ts       |  8 ++++++++
+ cdk.json             |  3 +++
+ lib/demoapp-stack.ts |  9 +++++++++
+ package.json         | 21 +++++++++++++++++++++
+ tsconfig.json        | 21 +++++++++++++++++++++
+ 8 files changed, 74 insertions(+)
+
+
+agould@horus:~/development/nodejs/demoapp> cat lib/demoapp-stack.ts 
+import cdk = require('@aws-cdk/cdk');
+
+export class DemoappStack extends cdk.Stack {
+  constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
+    super(scope, id, props);
+
+    // The code that defines your stack goes here
+  }
+}
+agould@horus:~/development/nodejs/demoapp> cat bin/demoapp.ts 
+#!/usr/bin/env node
+import 'source-map-support/register';
+import cdk = require('@aws-cdk/cdk');
+import { DemoappStack } from '../lib/demoapp-stack';
+
+const app = new cdk.App();
+new DemoappStack(app, 'DemoappStack');
+app.run();
+
+
+
+________________________________________________________________________________
+Issues with aws cli assume role profiles.
+
+agould@horus:~/git-repos/codecommit/ait-poc/tgwait> npm run build
+
+> tgwait@0.1.0 build /home/agould/git-repos/codecommit/ait-poc/tgwait
+> tsc
+
+agould@horus:~/git-repos/codecommit/ait-poc/tgwait> cdk synth
+[Error at /TgwaitStack-A1/MyVpc] Cannot determine scope for context provider availability-zones with props: account=undefined,region=undefined.
+This usually happens when AWS credentials are not available and the default account/region cannot be determined.
+[Error at /TgwaitStack-A1/MyVpc] Cannot determine scope for context provider availability-zones with props: account=undefined,region=undefined.
+This usually happens when AWS credentials are not available and the default account/region cannot be determined.
+Found errors
+
+
+This error is because cdk tries to source a default profile from ~/.aws/config.
+
+The hack is to remove all 'default profile' entries from ~/.aws/config, and then
+set the region in the 'default profile' in ~/.aws/credentials:
+
+agould@horus:~> egrep -A6 "\[default\]" ~/.aws/config
+# [default]
+# # agould@Auth
+# # https://229341609947.signin.aws.amazon.com/console
+# source_profile = default
+# region = us-west-2
+
+agould@horus:~> egrep -A6 "\[default\]" ~/.aws/credentials
+[default]
+aws_access_key_id = AKIAXXXXXXXXXX2QIU3Q
+aws_secret_access_key = 3FahTRLNyXXXXXXXXXXXXXXXXXXXXXX4MqWSg
+region = us-west-2
+
+
+
+
+
+
+________________________________________________________________________________
+
+agould@horus:~/git-repos/codecommit/ait-poc/tgwait> cdk synth| grep -A4 CDKMetadata
+  CDKMetadata:
+    Type: AWS::CDK::Metadata
+    Properties:
+      Modules: aws-cdk=0.24.1,@aws-cdk/aws-ec2=0.24.1,@aws-cdk/cdk=0.24.1,@aws-cdk/cx-api=0.24.1,jsii-runtime=node.js/v11.10.0
+
+
+                  
