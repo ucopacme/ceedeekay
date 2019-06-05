@@ -1,13 +1,124 @@
 ________________________________________________________________________________
 5/28/2019
 
-maintaining my aws-cdk environment
+Maintaining my aws-cdk environment
 
-(python3.7) agould@horus:~/git-repos/github/ucopacme/cdk-pipeline> ll
-total 0
-(python3.7) agould@horus:~/git-repos/github/ucopacme/cdk-pipeline> npm install aws-cdk
+is my nodejs environment set up right?
 
-> core-js@2.6.9 postinstall /home/agould/git-repos/github/ucopacme/cdk-pipeline/node_modules/core-js
+> which cdk
+/usr/bin/which: no cdk in (blahblah)
+
+> nvm current
+system
+> nvm list
+       v11.10.0
+->       system
+default -> stable (-> v11.10.0)
+node -> stable (-> v11.10.0) (default)
+stable -> 11.10 (-> v11.10.0) (default)
+iojs -> N/A (default)
+unstable -> N/A (default)
+lts/* -> lts/dubnium (-> N/A)
+lts/argon -> v4.9.1 (-> N/A)
+lts/boron -> v6.17.1 (-> N/A)
+lts/carbon -> v8.16.0 (-> N/A)
+lts/dubnium -> v10.15.3 (-> N/A)
+> nvm use stable
+Now using node v11.10.0 (npm v6.9.0)
+
+> which cdk
+~/.nvm/versions/node/v11.10.0/bin/cdk
+> cdk --version
+0.31.0 (build 7a70c08)
+> npm list -g
+/home/agould/.nvm/versions/node/v11.10.0/lib
+├─┬ aws-cdk@0.31.0
+│ ├─┬ @aws-cdk/applet-js@0.31.0
+│ │ ├─┬ @aws-cdk/cdk@0.31.0
+│ │ │ └── @aws-cdk/cx-api@0.31.0 deduped
+│ │ ├── fs-extra@7.0.1 deduped
+│ │ ├── source-map-support@0.5.12 deduped
+│ │ └── yaml@1.5.1 deduped
+> npm list -g aws-cdk
+/home/agould/.nvm/versions/node/v11.10.0/lib
+└── aws-cdk@0.31.0 
+
+> npm search @aws-cdk
+NAME                      | DESCRIPTION          | AUTHOR          | DATE       | VERSION 
+@aws-cdk/cdk              | AWS Cloud…           | =amzn-oss…      | 2019-04-04 | 0.28.0  
+@aws-cdk/aws-iam          | CDK routines for…    | =amzn-oss…      | 2019-04-04 | 0.28.0  
+@aws-cdk/aws-ec2          | CDK Constructs for…  | =amzn-oss…      | 2019-04-04 | 0.28.0  
+@aws-cdk/aws-sns          | CDK Constructs for…  | =amzn-oss…      | 2019-04-04 | 0.28.0  
+@aws-cdk/aws-cloudformati | CDK Constructs for…  | =amzn-oss…      | 2019-04-04 | 0.28.0  
+on                        |                      |                 |            |         
+@aws-cdk/aws-s3-notificat | Bucket…              | =amzn-oss…      | 2019-04-04 | 0.28.0  
+ions                      |                      |                 |            |         
+@aws-cdk/assets           | Integration of CDK…  | =amzn-oss…      | 2019-04-04 | 0.28.0  
+@aws-cdk/region-info      | AWS region…          | =amzn-oss…      | 2019-05-24 | 0.32.0  
+@aws-cdk/aws-ecr          | The CDK Construct…   | =amzn-oss…      | 2019-04-04 | 0.28.0  
+@aws-cdk/aws-codepipeline | Better interface to… | =amzn-oss…      | 2019-04-04 | 0.28.0  
+@aws-cdk/aws-apigateway   | The CDK Construct…   | =amzn-oss…      | 2019-04-04 | 0.28.0  
+@aws-cdk/aws-codecommit   | CDK Constructs for…  | =amzn-oss…      | 2019-04-04 | 0.28.0  
+@aws-cdk/aws-dynamodb     | CDK Constructs for…  | =amzn-oss…      | 2019-04-04 | 0.28.0  
+@aws-cdk/cloudformation-d | Utilities to diff…   | =amzn-oss…      | 2019-04-04 | 0.28.0  
+iff                       |                      |                 |            |         
+@aws-cdk/aws-autoscaling- | Common…              | =amzn-oss…      | 2019-04-04 | 0.28.0  
+common                    |                      |                 |            |         
+@aws-cdk/aws-codedeploy   | The CDK Construct…   | =amzn-oss…      | 2019-04-04 | 0.28.0  
+@aws-cdk/applet-js        | Javascript CDK…      | =amzn-oss…      | 2019-04-04 | 0.28.0  
+@aws-cdk/aws-kinesis      | CDK Constructs for…  | =amzn-oss…      | 2019-04-04 | 0.28.0  
+@aws-cdk/aws-sam          | The CDK Construct…   | =amzn-oss…      | 2019-04-04 | 0.28.0  
+@aws-cdk/aws-codepipeline | Concrete Actions…    | =amzn-oss…      | 2019-05-24 | 0.32.0  
+-actions                  |                      |                 |            |        
+
+> npm view aws-cdk
+
+aws-cdk@0.32.0 | Apache-2.0 | deps: 20 | versions: 37
+CDK Toolkit, the command line tool for CDK apps
+https://github.com/awslabs/aws-cdk
+
+keywords: aws, cdk
+
+bin: cdk
+
+dist
+.tarball: https://registry.npmjs.org/aws-cdk/-/aws-cdk-0.32.0.tgz
+.shasum: a7816e2086931c5e243b5ecbec135cb4c62cdbbf
+.integrity: sha512-Q17rK9VFa8O9A/EZIMYb8bA39PTmWw+SAxNj6tLe3Hs4M0xzLdqBDTcixAd1DCZBQIh6xL3aJqC/BLOHNjvrqQ==
+.unpackedSize: 942.4 kB
+
+dependencies:
+@aws-cdk/applet-js: ^0.32.0           json-diff: ^0.5.4                     
+@aws-cdk/cloudformation-diff: ^0.32.0 minimatch: >=3.0                      
+@aws-cdk/cx-api: ^0.32.0              promptly: ^3.0.3                      
+@aws-cdk/region-info: ^0.32.0         proxy-agent: ^3.1.0                   
+archiver: ^3.0.0                      request: ^2.88.0                      
+aws-sdk: ^2.438.0                     semver: ^6.0.0                        
+camelcase: ^5.3.1                     source-map-support: ^0.5.12           
+colors: ^1.3.3                        table: ^5.2.3                         
+decamelize: ^3.2.0                    yaml: ^1.5.0                          
+fs-extra: ^7.0.1                      yargs: ^13.2.2                        
+
+maintainers:
+- amzn-oss <osa-3p@amazon.com>
+- aws-cdk-team <aws-cdk-dev@amazon.com>
+- eladb <elad.benisrael@gmail.com>
+- rix0rrr <rix0rrr@gmail.com>
+- romainmuller <romain.muller@telecomnancy.net>
+
+dist-tags:
+latest: 0.32.0  
+
+published 4 days ago by aws-cdk-team <aws-cdk-dev@amazon.com>
+
+
+> npm install --dry-run -g aws-cdk@latest
++ aws-cdk@0.32.0
+added 2 packages, removed 6 packages and updated 24 packages in 2.343s
+e> npm install -g aws-cdk@latest
+/home/agould/.nvm/versions/node/v11.10.0/bin/cdk -> /home/agould/.nvm/versions/node/v11.10.0/lib/node_modules/aws-cdk/bin/cdk
+
+> core-js@2.6.9 postinstall /home/agould/.nvm/versions/node/v11.10.0/lib/node_modules/aws-cdk/node_modules/core-js
 > node scripts/postinstall || echo "ignore"
 
 Thank you for using core-js ( https://github.com/zloirock/core-js ) for polyfilling JavaScript standard library!
@@ -18,17 +129,23 @@ The project needs your help! Please consider supporting of core-js on Open Colle
 
 Also, the author of core-js ( https://github.com/zloirock ) is looking for a good job -)
 
-npm WARN saveError ENOENT: no such file or directory, open '/home/agould/git-repos/github/ucopacme/cdk-pipeline/package.json'
-npm notice created a lockfile as package-lock.json. You should commit this file.
-npm WARN enoent ENOENT: no such file or directory, open '/home/agould/git-repos/github/ucopacme/cdk-pipeline/package.json'
-npm WARN cdk-pipeline No description
-npm WARN cdk-pipeline No repository field.
-npm WARN cdk-pipeline No README data
-npm WARN cdk-pipeline No license field.
-
 + aws-cdk@0.32.0
-added 267 packages from 247 contributors and audited 545 packages in 21.251s
-found 0 vulnerabilities
+
+> npm ls -g aws-cdk
+/home/agould/.nvm/versions/node/v11.10.0/lib
+└── aws-cdk@0.32.0 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ________________________________________________________________________________

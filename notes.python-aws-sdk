@@ -1,0 +1,88 @@
+In python
+---------
+
+
+Verify your nodejs environment::
+
+  > nvm current
+  system
+  > nvm use stable
+  Now using node v11.10.0 (npm v6.9.0)
+  > cdk --version
+  0.32.0 (build ca6c342)
+
+
+Install python aws-cdk.cdk package::
+
+  > pip install -U aws-cdk.cdk
+  [cut]
+  Installing collected packages: mypy-extensions, typing-extensions, cattrs, jsii, publication, aws-cdk.cx-api, aws-cdk.cdk
+  Successfully installed aws-cdk.cdk-0.32.0 aws-cdk.cx-api-0.32.0 cattrs-0.9.0 jsii-0.11.0 mypy-extensions-0.4.1 publication-0.0.3 typing-extensions-3.7.2
+
+
+Create your project::
+
+  > mkdir cdk-pipeline; cd cdk-pipeline
+  cdk-pipeline> cdk init --list
+  Available templates:
+  * app: Template for a CDK Application
+     └─ cdk init app --language=[csharp|fsharp|java|javascript|python|typescript]
+  * lib: Template for a CDK Construct Library
+     └─ cdk init lib --language=typescript
+  * sample-app: Example CDK Application with some constructs
+     └─ cdk init sample-app --language=[javascript|python|typescript]
+  
+  > cdk init app -l python
+  Applying project template app for python
+  Initializing a new git repository...
+  Executing Creating virtualenv...
+  
+  # Welcome to your CDK Python project!
+  [cut]
+  
+  cdk-pipeline> ls -la
+  total 40
+  drwxrwxr-x.  5 agould agould 4096 May 28 11:56 .
+  drwxrwxr-x. 27 agould agould 4096 May 28 07:11 ..
+  -rw-rw-r--.  1 agould agould  183 May 28 11:56 app.py
+  -rw-rw-r--.  1 agould agould   32 May 28 11:56 cdk.json
+  drwxrwxr-x.  2 agould agould 4096 May 28 11:56 cdk_pipeline
+  drwxrwxr-x.  5 agould agould 4096 May 28 11:56 .env
+  drwxrwxr-x.  8 agould agould 4096 May 28 11:56 .git
+  -rw-rw-r--.  1 agould agould 1651 May 28 11:56 README.md
+  -rw-rw-r--.  1 agould agould    5 May 28 11:56 requirements.txt
+  -rw-rw-r--.  1 agould agould 1034 May 28 11:56 setup.py
+  cdk-pipeline> cat app.py 
+  #!/usr/bin/env python3
+  
+  from aws_cdk import cdk
+  
+  from cdk_pipeline.cdk_pipeline_stack import CdkPipelineStack
+  
+  
+  app = cdk.App()
+  CdkPipelineStack(app, "cdk-pipeline-cdk-1")
+  
+  app.run()
+
+
+This creates an entire python virtual env for you.  activate this venv and install
+requirements::
+
+  cdk-pipeline> source .env/bin/activate
+  cdk-pipeline> nvm use stable
+  cdk-pipeline> pip install -r requirements.txt 
+  [cut]
+  Successfully installed attrs-19.1.0 aws-cdk.cdk-0.32.0 aws-cdk.cx-api-0.32.0 cattrs-0.9.0 cdk-pipeline jsii-0.11.0 mypy-extensions-0.4.1 publication-0.0.3 python-dateutil-2.8.0 six-1.12.0 typing-extensions-3.7.2
+  cdk-pipeline> cdk ls
+  cdk-pipeline-cdk-1
+  cdk-pipeline> cdk synth
+  Resources:
+    CDKMetadata:
+      Type: AWS::CDK::Metadata
+      Properties:
+        Modules: aws-cdk=0.32.0,@aws-cdk/cdk=0.32.0,@aws-cdk/cx-api=0.32.0,jsii-runtime=Python/3.7.3
+
+
+
+
