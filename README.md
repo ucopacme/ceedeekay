@@ -10,6 +10,7 @@ is wretched. So write cdk in typescript unless you're a masochist.
 * [Samples](https://github.com/aws-samples/aws-cdk-examples)
 * [Docs](https://docs.aws.amazon.com/CDK/latest/userguide/what-is.html)
 * [Demo from re:invent 2018](https://github.com/awslabs/cdk-reinvent)
+* [Deep dive into AWS Cloud Development Kit](https://www.youtube.com/watch?v=9As_ZIjUGmY)
 * [Another nice tutorial](https://cdkworkshop.com/)
 * [slack channel](https://gitter.im/awslabs/aws-cdk)
 
