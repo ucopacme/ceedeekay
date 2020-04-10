@@ -50,16 +50,16 @@ You can reverse engineer buildspec.yaml if you want to manually run things like 
 * clone code to build local codebuild docker image in  ~/environment
 
 ```
-cd ~/environment
-git clone https://github.com/aws/aws-codebuild-docker-images.git
+mkdir -p ~/github/aws/ /tmp/artifacts
+git clone https://github.com/aws/aws-codebuild-docker-images.git ~/github/aws/
 ```
 
 * build local docker image to run codebuild, this will take some time and take ~10GB disk space.
 see hints down below for how to embiggen a c9 instance for more disk space.
 
 ```
-cd aws-codebuild-docker-images/ubuntu/standard/2.0/
-docker build -t aws/codebuild/standard:2.0 .
+cd ~/github/aws/aws-codebuild-docker-images/ubuntu/standard/4.0/
+docker build -t aws/codebuild/standard:4.0 .
 ```
 
 * set region so docker runtime will inherit with -c
@@ -71,7 +71,7 @@ export AWS_REGION="us-west-2"
 * run codebuild locally
 
 ```
-~/environment/aws-codebuild-docker-images/local_builds/codebuild_build.sh -i aws/codebuild/standard:2.0 -a ~/environment/artifacts -s ~/environment/yourapprepo/ -c
+~/github/aws/aws-codebuild-docker-images/local_builds/codebuild_build.sh -i aws/codebuild/standard:4.0 -a /tmp/artifacts -s ~/your/app/repo/with/buildspec/at/root -c
 ```
 
 Boom!
