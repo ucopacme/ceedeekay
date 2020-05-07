@@ -51,7 +51,7 @@ You can reverse engineer buildspec.yaml if you want to manually run things like 
 
 ```
 mkdir -p ~/github/aws/ /tmp/artifacts
-git clone https://github.com/aws/aws-codebuild-docker-images.git ~/github/aws/
+git clone https://github.com/aws/aws-codebuild-docker-images.git ~/github/aws/aws-codebuild-docker-images
 ```
 
 * build local docker image to run codebuild, this will take some time and take ~10GB disk space.
