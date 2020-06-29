@@ -123,19 +123,20 @@ npm run watch
  output in cdk.out dir by default:
 
  ```
- cdk synth`       
+ cdk synth
  ```
 
 ### deploy stack to your default AWS account/region
 
 ```
-cdk deploy --require-approval never
+cdk deploy 'stackname*' --require-approval never
 ```
 
 ### compare deployed stack with current state
 
  ```
- cdk diff`        
+ cdk diff #all stacks
+ cdk diff '$regex' #all stacks matching regex
  ```
 
 ### cdk project with codepipeline/codebuild.
