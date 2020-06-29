@@ -16,6 +16,128 @@ is wretched. So write cdk in typescript unless you're a masochist.
 
 ## Helpful hints
 
+### Node
+
+Make sure your node version is what you want and that everyone working on a cdk
+project is using the same node version
+
+```
+node --version
+```
+
+#### Managing node version with nvm
+
+howto under construction
+
+### installing cdk with node package manager
+
+```
+npm install -g cdk npm-check-updates prettier
+```
+
+### Installing project node packages
+
+file package.json contains list of packages needed for project development.
+Install them with node package manager.
+
+```
+npm i
+```
+
+You can search for additional packages with:
+
+```
+npm search blah
+```
+
+You can install additional packages with:
+
+```
+npm install blah
+```
+
+Or you can add the package directly into package.json and re-run 'npm i'
+
+
+### updates
+
+Hint use this to make package updates easier
+
+```
+ncu -u && npm i #update package.json and update
+ncu -g # show updates to global packages
+```
+### npm scripts
+
+scripts key in package.json contains various scripts (duh!) that can perform useful tasks.
+
+```
+cat package.json  | jq .scripts
+```
+
+## testing with jest
+
+```
+npm run test
+```
+
+## doc with [typedoc](https://typedoc.org/guides/doccomments/)
+
+```
+npm run doc
+```
+
+## linting with tslint
+
+```
+npm run lint
+```
+
+## formatting with prettier
+
+```
+npm run format
+```
+
+## scanning with cfn_nag_scan
+
+```
+npm run format
+```
+
+## Useful cdk ops
+
+### compile typescript to js
+
+ ```
+ npm run build
+ ```
+
+### watch for changes and compile
+
+```
+npm run watch
+```
+
+ ### compile synthesized CloudFormation template(s)
+ output in cdk.out dir by default:
+
+ ```
+ cdk synth`       
+ ```
+
+### deploy stack to your default AWS account/region
+
+```
+cdk deploy --require-approval never
+```
+
+### compare deployed stack with current state
+
+ ```
+ cdk diff`        
+ ```
+
 ### cdk project with codepipeline/codebuild.
 
 cdk expects env vars to exist. environments are mapped to git branches:
@@ -77,65 +199,6 @@ export AWS_REGION="us-west-2"
 Boom!
 
 
-## Useful cdk ops
-
- * `npm run build`   compile typescript to js
- * `npm run watch`   watch for changes and compile
- * `cdk synth`       emits the synthesized CloudFormation template, also creates synthesized stack templates in cdk.out
- * `for i in cdk.out/*Stack.template.json; do cfn_nag_scan -i $i; done`   scan synthesized stack templates in cdk.out
- * `cdk deploy --require-approval never -t Application=demo -t ProductOwner=eric.odell@ucop.edu -t Environment=dev`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * ` for i in `grep peer /tmp/i | awk '{print $8}' |sort | uniq |awk -F ^ '{print $1"latest"}'`; do npm install --save-dev $i; done`  capture output of npm i with "npm WARN @aws-cdk/aws-stepfunctions@1.11.0 requires a peer of @aws-cdk/aws-iam@^1.11.0 but none is installed. You must install peer dependencies yourself."
-
-# npm
-
-## updates
-
-Hint use this to make package updates easier
-
-```
-npm install -g npm-check-updates
-ncu -u && npm i #update package.json and update
-ncu -g # show updates to global packages
-```
-
-## scripts
-
-scripts key in package.json contains various scripts (duh!) that can perform useful tasks.
-
-```
-cat package.json  | jq .scripts
-```
-
-## testing with jest
-
-```
-npm run test
-```
-
-## doc with [typedoc](https://typedoc.org/guides/doccomments/)
-
-```
-npm run doc
-```
-
-## linting with tslint
-
-```
-npm run lint
-```
-
-## formatting with prettier
-
-```
-npm run format
-```
-
-## scanning with cfn_nag_scan
-
-```
-npm run format
-```
 
 
 # cloud9
